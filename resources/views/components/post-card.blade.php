@@ -3,7 +3,7 @@
         <div class="card product-card h-100">
             <img src="https://picsum.photos/100" class="card-img-top" alt="تصویر پست">
             <div class="card-body">
-                <h5 class="card-title">Salam</h5>
+                <h5 class="card-title">{{ $post->name }}</h5>
                 <p class="card-text text-muted">توضیحات کوتاه خبر</p>
                 <small class="text-muted">تاریخ: 1231231</small>
             </div>

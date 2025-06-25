@@ -1,7 +1,20 @@
 <?php
 
+use App\Models\Category;
+use App\Models\Post;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    $categories = Category::all();
+    $uncategorized = Post::where('category_id', null)->where('status', 'accepted')->limit(4)->get();
+    
+    $posts = [];
+    $posts['Uncategorized'] = $uncategorized;
+
+    foreach ($categories as $category){
+        if(count($category->posts()->where('status', 'accepted')->get()) == 0) continue;
+        $posts[$category->name] = $category->posts()->where('status','accepted')->limit(4)->get();
+    }
+
+    return view('welcome',compact(['posts']));
 });

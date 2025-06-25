@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Category;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +19,12 @@ class PostFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => $this->faker->sentence(),
+            'body' => $this->faker->paragraphs(3, true),
+            'url' => $this->faker->optional()->url(),
+            'user_id' => User::factory(),
+            'category_id' => $this->faker->randomElement([Category::factory(), 1, 2, 3, null]),
+            'status' => $this->faker->randomElement(['pending', 'accepted', 'rejected']),
         ];
     }
 }
