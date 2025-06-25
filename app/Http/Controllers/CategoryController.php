@@ -9,9 +9,9 @@ class CategoryController extends Controller
 {
     public function show(Category $category)
     {
-        $posts = $category->posts()->where('status', 'done')->get();
+        $posts = $category->posts()->where('status', 'accepted')->get();
         $name = $category->name;
         
-        //return posts and name
+        return view('category', compact(['posts', 'name']));
     }
 }
