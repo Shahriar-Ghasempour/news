@@ -1,5 +1,5 @@
 <div class="col-md-3 mb-4">
-    <a href="#" class="text-decoration-none">
+    <a href={{ route('post.show', $post->id) }} class="text-decoration-none">
         <div class="card product-card h-100">
             <img src="https://picsum.photos/100" class="card-img-top" alt="تصویر پست">
             <div class="card-body">

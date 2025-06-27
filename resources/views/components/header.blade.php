@@ -5,6 +5,18 @@
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
+        <div class="navbar-nav">
+            @auth
+                <a class="nav-link" href="">Dashboard</a>
+                <form action="{{ route('logout') }}" method="POST">
+                    @csrf
+                    <button type="submit" class="nav-link btn btn-link">Logout</button>
+                </form>
+            @else
+                <a class="nav-link" href="{{ route('login.show') }}">ورود</a>
+                <a class="nav-link" href="{{ route('register.show') }}">عضویت</a>
+            @endauth
+        </div>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">

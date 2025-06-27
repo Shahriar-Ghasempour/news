@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PostController;
+use App\Http\Middleware\Guest;
 use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Support\Facades\Route;
@@ -11,16 +13,34 @@ Route::get('/', function () {
     $uncategorized = Post::where('category_id', null)->where('status', 'accepted')->limit(4)->get();
     
     $posts = [];
-    $posts['Uncategorized'] = $uncategorized;
+    $posts['Uncategorized'] = [
+        'posts' => $uncategorized,
+        'id' => null
+    ];
 
-    foreach ($categories as $category){
-        if(count($category->posts()->where('status', 'accepted')->get()) == 0) continue;
-        $posts[$category->name] = $category->posts()->where('status','accepted')->limit(4)->get();
+    foreach ($categories as $category) {
+        $categoryPosts = $category->posts()->where('status', 'accepted')->limit(4)->get();
+        if ($categoryPosts->count() > 0) {
+            $posts[$category->name] = [
+                'posts' => $categoryPosts,
+                'id' => $category->id
+            ];
+        }
     }
 
-    return view('welcome',compact(['posts']));
+    return view('welcome', compact('posts'));
+})->name('home');
+
+Route::get('/category', [CategoryController::class, 'showUncategorized'])->name('uncategorized.show');
+Route::get('/category/{category}', [CategoryController::class, 'show'])->name('category.show');
+
+
+Route::get('/post/{post}', [PostController::class, 'show'])->name('post.show');
+
+Route::middleware([Guest::class])->prefix('/auth')->group(function() {
+    Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login.show');
+    Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register.show');
+    Route::post('/login', [AuthController::class, 'login'])->name('login');
+    Route::post('/register', [AuthController::class, 'register'])->name('register');
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 });
-
-Route::get('/category/{category}', [CategoryController::class, 'show']);
-
-Route::get('/post/{post}', [PostController::class, 'show']);
