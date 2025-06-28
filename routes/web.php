@@ -44,3 +44,7 @@ Route::middleware([Guest::class])->prefix('/auth')->group(function() {
     Route::post('/register', [AuthController::class, 'register'])->name('register');
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 });
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+});
