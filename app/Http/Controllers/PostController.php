@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
@@ -23,7 +24,9 @@ class PostController extends Controller
 
     public function create()
     {
-        return view('dashboard.create-post');
+        return view('dashboard.create-post', [
+            "categories" => Category::all(),
+        ]);
     }
 
     public function store(Request $request)
@@ -33,7 +36,7 @@ class PostController extends Controller
         $validated = $request->validate([
             "name" => "required|max:255",
             "body" => "required",
-            "category_id" => "nullable,exists:categories,id",
+            "category_id" => "nullable|exists:categories,id",
         ]);
 
         $post = $user->posts()->create($validated);
@@ -42,8 +45,9 @@ class PostController extends Controller
     }
 
     public function edit(Post $post)
-    {
-        return view('dashboard.edit-post', compact('post'));
+    {               
+        $categories = Category::all();
+        return view('dashboard.edit-post', compact('post', 'categories'));
     }
 
     public function update(Request $request, Post $post)

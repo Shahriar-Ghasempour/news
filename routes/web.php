@@ -54,11 +54,17 @@ Route::middleware([Auth::class])->prefix('dashboard')->group(function() {
     })->name('dashboard');
 
     Route::middleware([Author::class])->group(function() {
-        Route::get('/posts')->name('dashboard.posts');
+        Route::get('/posts', [PostController::class, 'indexAuthor'])->name('dashboard.posts');
 
-        Route::get('/posts/new')->name('dashboard.create-post');
+        Route::get('/posts/new', [PostController::class, 'create'])->name('dashboard.create-post');
 
-        Route::get('/posts/{post}')->name('dashboard.edit-post');
+        Route::get('/posts/{post}', [PostController::class, 'edit'])->name('dashboard.edit-post');
+
+        Route::post('/posts', [PostController::class, 'store'])->name('dashboard.posts.store');
+
+        Route::put('/posts/{post}', [PostController::class, 'update'])->name('dashboard.posts.update');
+
+        Route::delete('/posts/{post}', [PostController::class, 'delete'])->name('dashboard.posts.delete');
     });
 });
 
