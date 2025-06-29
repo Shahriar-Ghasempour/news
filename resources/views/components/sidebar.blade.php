@@ -13,15 +13,9 @@
             </a>
         </li>
         <li>
-            <a href="#" class="nav-link text-white">
+            <a href={{ route('dashboard.posts') }} class="nav-link text-white">
                 <i class="bi bi-speedometer2 me-2"></i>
                 پست های شما
-            </a>
-        </li>
-        <li>
-            <a href="#" class="nav-link text-white">
-                <i class="bi bi-people me-2"></i>
-                پست جدید
             </a>
         </li>
         <li>
