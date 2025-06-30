@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\PostCommentController;
 use App\Http\Controllers\PostController;
 use App\Http\Middleware\Auth;
 use App\Http\Middleware\Author;
@@ -57,6 +58,13 @@ Route::middleware([Auth::class])->prefix('dashboard')->group(function() {
     Route::post('comment/{post}', [CommentController::class, 'store']);
 
     Route::middleware([Author::class])->group(function() {
+        Route::get('/posts/comments', [PostCommentController::class, 'index'])->name('dashboard.author.comments');
+
+        Route::get('/posts/comments/{comment}', [PostCommentController::class, 'edit'])->name('dashboard.posts.comments.edit');
+
+        Route::put('/posts/comments/{comment}', [PostCommentController::class, 'update'])->name('dashboard.posts.comments.update');
+        
+
         Route::get('/posts', [PostController::class, 'indexAuthor'])->name('dashboard.posts');
 
         Route::get('/posts/new', [PostController::class, 'create'])->name('dashboard.create-post');
@@ -68,15 +76,7 @@ Route::middleware([Auth::class])->prefix('dashboard')->group(function() {
         Route::put('/posts/{post}', [PostController::class, 'update'])->name('dashboard.posts.update');
 
         Route::delete('/posts/{post}', [PostController::class, 'delete'])->name('dashboard.posts.delete');
-        
 
-        Route::get('/posts/comments')->name('dashboard.author.comments');
-
-        Route::get('/posts/{post}/comments')->name('dashboard.posts.comments');
-
-        Route::get('/posts/comments/{comment}')->name('dashboard.posts.comments.edit');
-
-        Route::put('/posts/comments/{comment}')->name('dashboard.posts.comments.update');
 
 
         

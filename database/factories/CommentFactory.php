@@ -29,7 +29,7 @@ class CommentFactory extends Factory
         return [
             'content' => $this->faker->randomElement($persianComments),
             'user_id' => $this->faker->randomElement([User::factory(), 1, 2, 3, 32]),
-            'post_id' => $this->faker->randomElement([Post::factory(), 1,2,3,4,5]),
+            'post_id' => $this->faker->randomElement([Post::factory(), 1,2,3,4,5, 11]),
             'status' => $this->faker->randomElement(['pending', 'accepted', 'rejected']),
         ];
     }

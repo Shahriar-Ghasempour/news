@@ -30,6 +30,6 @@ class PostCommentController extends Controller
 
         $comment->update($validated);
 
-        return redirect(route('dashboard.posts.comments'))->with('success', '!با موفقیت ویرایش شد!');
+        return redirect(route('dashboard.author.comments'))->with('success', '!با موفقیت ویرایش شد!');
     }
 }

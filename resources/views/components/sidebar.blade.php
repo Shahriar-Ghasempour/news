@@ -19,9 +19,15 @@
             </a>
         </li>
         <li>
+            <a href={{ route('dashboard.author.comments') }} class="nav-link text-white">
+                <i class="bi bi-speedometer2 me-2"></i>
+                کامنت های پست ها
+            </a>
+        </li>
+        <li>
             <a href={{ route('dashboard.comments') }} class="nav-link text-white">
                 <i class="bi bi-gear me-2"></i>
-                کامنت ها
+                کامنت های شما
             </a>
         </li>
     </ul>
