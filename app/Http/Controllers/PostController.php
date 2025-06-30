@@ -19,12 +19,12 @@ class PostController extends Controller
 
         $posts = $user->posts;
 
-        return view('dashboard.posts', compact(['posts']));
+        return view('dashboard.post.posts', compact(['posts']));
     }
 
     public function create()
     {
-        return view('dashboard.create-post', [
+        return view('dashboard.post.create-post', [
             "categories" => Category::all(),
         ]);
     }
@@ -47,7 +47,7 @@ class PostController extends Controller
     public function edit(Post $post)
     {               
         $categories = Category::all();
-        return view('dashboard.edit-post', compact('post', 'categories'));
+        return view('dashboard.post.edit-post', compact('post', 'categories'));
     }
 
     public function update(Request $request, Post $post)

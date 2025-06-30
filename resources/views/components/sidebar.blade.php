@@ -19,7 +19,7 @@
             </a>
         </li>
         <li>
-            <a href="#" class="nav-link text-white">
+            <a href={{ route('dashboard.comments') }} class="nav-link text-white">
                 <i class="bi bi-gear me-2"></i>
                 کامنت ها
             </a>
