@@ -68,6 +68,15 @@ Route::middleware([Auth::class])->prefix('dashboard')->group(function() {
         Route::put('/posts/{post}', [PostController::class, 'update'])->name('dashboard.posts.update');
 
         Route::delete('/posts/{post}', [PostController::class, 'delete'])->name('dashboard.posts.delete');
+        
+
+        Route::get('/posts/comments')->name('dashboard.author.comments');
+
+        Route::get('/posts/{post}/comments')->name('dashboard.posts.comments');
+
+        Route::get('/posts/comments/{comment}')->name('dashboard.posts.comments.edit');
+
+        Route::put('/posts/comments/{comment}')->name('dashboard.posts.comments.update');
 
 
         
