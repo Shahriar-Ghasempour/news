@@ -15,6 +15,10 @@ class Guest
      */
     public function handle(Request $request, Closure $next): Response
     {
+        if(auth()->user()) {
+            return redirect(route('dashboard'));
+        }
+        
         return $next($request);
     }
 }

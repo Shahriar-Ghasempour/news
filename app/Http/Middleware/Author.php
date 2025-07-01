@@ -15,6 +15,11 @@ class Author
      */
     public function handle(Request $request, Closure $next): Response
     {
+        $user = auth()->user();
+        if($user->role != 'author') {
+            return redirect(route('dashboard'));
+        }
+        
         return $next($request);
     }
 }
