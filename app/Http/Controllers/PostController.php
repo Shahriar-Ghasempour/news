@@ -37,9 +37,16 @@ class PostController extends Controller
             "name" => "required|max:255",
             "body" => "required",
             "category_id" => "nullable|exists:categories,id",
+            "image" => "nullable|image|mimes:jpeg,png,jpg,gif|max:2048",
         ]);
 
         $post = $user->posts()->create($validated);
+
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('images', 'public');
+            
+            $post->update(['image' => $imagePath]);
+        }
 
         return redirect(route('dashboard.posts'))->with('success', 'با موفقیت ساخته شد!');
     }
@@ -53,10 +60,16 @@ class PostController extends Controller
     public function update(Request $request, Post $post)
     {
         $validated = $request->validate([
-            'name' => 'sometimes|max:255',
-            'body' => 'sometimes',
-            "category_id" => "sometimes,exists:categories,id",
+            'name' => 'required|max:255', 
+            'body' => 'required',
+            "category_id" => "nullable|exists:categories,id",
+            "image" => "nullable|image|mimes:jpeg,png,jpg,gif|max:2048",
         ]);
+
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('images', 'public');
+            $validated['image'] = $imagePath; 
+        }
 
         $post->update($validated);
 

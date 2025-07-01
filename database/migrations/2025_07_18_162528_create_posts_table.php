@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->text('body');
             $table->string('url')->nullable();
+            $table->string('image')->nullable();
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->foreignId('category_id')->nullable()->constrained('categories');
             $table->enum('status', ['pending', 'accepted', 'rejected'])->default('pending');

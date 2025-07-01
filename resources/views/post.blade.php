@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-md-9">
                 <div class="image-container">
-                    <img src="https://picsum.photos/300" class="img-fluid" />
+                    <img src={{ $post->image ? asset('storage/'.$post->image) : "https://picsum.photos/200" }} class="img-fluid" />
                 </div>
                 <div>
                     <h1>{{$post->name}}</h1>

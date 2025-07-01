@@ -16,7 +16,7 @@
                           <div class="mb-3">
                               <label class="form-label">تصویر فعلی</label>
                               <div>
-                                  <img src="{{ asset('storage/' . $post->image) }}" alt="Current post image" class="img-thumbnail" style="max-height: 200px;">
+                                  <img src={{ $post->image ? asset('storage/'.$post->image) : "https://picsum.photos/200" }} alt="Current post image" class="img-thumbnail" style="max-height: 200px;">
                                   <div class="form-check mt-2">
                                       <input class="form-check-input" type="checkbox" id="remove_image" name="remove_image">
                                       <label class="form-check-label" for="remove_image">
