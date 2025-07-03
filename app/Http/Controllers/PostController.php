@@ -10,7 +10,8 @@ class PostController extends Controller
 {
     public function show(Post $post)
     {
-        return view('post', compact(['post']));
+        $comments = $post->comments;
+        return view('post', compact(['post', 'comments']));
     }
 
     public function indexAuthor()

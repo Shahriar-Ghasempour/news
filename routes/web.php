@@ -63,7 +63,7 @@ Route::middleware([Auth::class])->prefix('dashboard')->group(function() {
         Route::get('/posts/comments/{comment}', [PostCommentController::class, 'edit'])->name('dashboard.posts.comments.edit');
 
         Route::put('/posts/comments/{comment}', [PostCommentController::class, 'update'])->name('dashboard.posts.comments.update');
-        
+
 
         Route::get('/posts', [PostController::class, 'indexAuthor'])->name('dashboard.posts');
 
@@ -87,6 +87,8 @@ Route::middleware([Auth::class])->prefix('dashboard')->group(function() {
         Route::put('/comments/{comment}', [CommentController::class, 'update'])->name('dashboard.comments.update');
 
         Route::delete('/comments/{comment}', [CommentController::class, 'delete'])->name('dashboard.comments.delete');
+        
+        Route::post('/comments', [CommentController::class, 'store'])->name('dashboard.comments.store');
 
     });
 });

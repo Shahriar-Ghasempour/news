@@ -23,5 +23,7 @@
                 </div>
             </div>
         </div>
+        <x-comment :post="$post" />
+        <x-comments :post="$post" />
     </div>
 </x-layouts.home>
