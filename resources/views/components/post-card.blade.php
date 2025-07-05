@@ -5,7 +5,7 @@
             <div class="card-body">
                 <h5 class="card-title">{{ $post->name }}</h5>
                 <p class="card-text text-muted">توضیحات کوتاه خبر</p>
-                <small class="text-muted">تاریخ: 1231231</small>
+                <small class="text-muted">{{ $post->created_at_jalali }}</small>
             </div>
         </div>
     </a>

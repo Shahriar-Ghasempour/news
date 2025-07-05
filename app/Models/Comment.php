@@ -12,6 +12,16 @@ class Comment extends Model
 
     protected $fillable = ['content', 'user_id', 'post_id', 'status'];
 
+    public function getCreatedAtJalaliAttribute()
+    {
+        return Jalalian::fromDateTime($this->created_at)->format('Y/m/d H:i');
+    }
+
+    public function getUpdatedAtJalaliAttribute()
+    {
+        return Jalalian::fromDateTime($this->updated_at)->format('Y/m/d H:i');
+    }
+
     public function post()
     {
         return $this->belongsTo(Post::class);

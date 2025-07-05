@@ -11,7 +11,7 @@
                         <div>
                             <h6 class="mb-1">{{ $comment->user->name }}</h6>
                             <p class="mb-1">{{ $comment->content }}</p>
-                            <small class="text-muted">{{ $comment->created_at->diffForHumans() }}</small>
+                            <small class="text-muted">{{ $comment->created_at_jalali }}</small>
                         </div>
                         @auth
                             @if(auth()->id() === $comment->user_id)

@@ -26,7 +26,7 @@
                                         <h5>{{ $comment->post->name }}</h5>
                                     </a>
                                     <p class="text-muted small mb-0">ارسال شده توسط: {{ $comment->user->name }}</p>
-                                    <p class="text-muted small">تاریخ: {{ $comment->created_at->format('Y/m/d H:i') }}</p>
+                                    <p class="text-muted small">تاریخ: {{ {{ $comment->created_at_jalali }} }}</p>
                                 </div>
                             </div>
                             
