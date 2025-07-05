@@ -3,7 +3,7 @@
         <a class="navbar-brand" href="#">News</a>
         <div class="navbar-nav">
             @auth
-                <a class="nav-link" href="">Dashboard</a>
+                <a class="nav-link" href="/dashboard">Dashboard</a>
                 <form action="{{ route('logout') }}" method="POST">
                     @csrf
                     <button type="submit" class="nav-link btn btn-link">Logout</button>
@@ -16,7 +16,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    <a class="nav-link active" aria-current="page" href="/">Home</a>
                 </li>
                 <li class="nav-item ms-3">
                     {{-- <a href="{{ route('login') }}" class="btn btn-outline-primary">Login</a> --}}

@@ -12,6 +12,7 @@
                 داشبورد
             </a>
         </li>
+        @if(auth()->user()->role != 'user')
         <li>
             <a href={{ route('dashboard.posts') }} class="nav-link text-white">
                 <i class="bi bi-speedometer2 me-2"></i>
@@ -30,5 +31,6 @@
                 کامنت های شما
             </a>
         </li>
+        @endif
     </ul>
 </div>

@@ -22,14 +22,10 @@ class PostsRelationManager extends RelationManager
             ->schema([
                 Select::make('status')
                     ->options([
-                        'Pending' => 'pending',
-                        'Accepted' => 'accepted',
-                        'Rejected' => 'rejected'
-                    ]),
-                Select::make('category_id')
-                    ->label('Category')
-                    ->options(Category::all()->pluck('name', 'id'))
-                    ->required(),
+                        'pending' => 'Pending',
+                        'accepted' => 'Accepted',
+                        'rejected' => 'Rejected'
+                ]),
             ]);
     }
 

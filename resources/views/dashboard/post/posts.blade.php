@@ -36,7 +36,7 @@
                                   {{ ucfirst($post->status) }}
                               </span>
                           </td>
-                          <td>{{ {{ $post->created_at_jalali }} }}</td>
+                          <td>{{ $post->created_at_jalali }}</td>
                           <td>
                               <a href="{{ route('dashboard.edit-post', $post->id) }}" class="btn btn-sm btn-outline-primary">ویرایش</a>
                               <form action="{{ route('dashboard.posts.delete', $post->id) }}" method="POST" class="d-inline">

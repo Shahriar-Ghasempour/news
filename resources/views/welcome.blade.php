@@ -1,4 +1,5 @@
 <x-layouts.home>
+    <x-slider :posts="$slider_posts"/>
     @foreach ($posts as $categoryName => $categoryData)
     <section class="py-5">
         <div class="container">

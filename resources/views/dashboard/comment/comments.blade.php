@@ -38,7 +38,7 @@
                                             @else رد شده @endif
                                         </span>
                                     </td>
-                                    <td>{{ {{ $comment->created_at_jalali }} }}</td>
+                                    <td>{{ $comment->created_at_jalali }}</td>
                                     <td>
                                         <div class="d-flex gap-2">
                                             <a href="{{ route('dashboard.edit-comment', $comment->id) }}" 

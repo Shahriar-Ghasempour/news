@@ -16,11 +16,15 @@ Route::get('/', function () {
     $categories = Category::all();
     $uncategorized = Post::where('category_id', null)->where('status', 'accepted')->limit(4)->get();
     
+    $slider_posts = Post::limit(4)->get();
+
     $posts = [];
-    $posts['Uncategorized'] = [
-        'posts' => $uncategorized,
-        'id' => null
-    ];
+    if($uncategorized->count() > 0) {
+        $posts['Uncategorized'] = [
+            'posts' => $uncategorized,
+            'id' => null
+        ];
+    }
 
     foreach ($categories as $category) {
         $categoryPosts = $category->posts()->where('status', 'accepted')->limit(4)->get();
@@ -32,7 +36,7 @@ Route::get('/', function () {
         }
     }
 
-    return view('welcome', compact('posts'));
+    return view('welcome', compact('posts', 'slider_posts'));
 })->name('home');
 
 Route::get('/category', [CategoryController::class, 'showUncategorized'])->name('uncategorized.show');
@@ -47,10 +51,11 @@ Route::middleware([Guest::class])->prefix('/auth')->group(function() {
 
     Route::post('/login', [AuthController::class, 'login'])->name('login');
     Route::post('/register', [AuthController::class, 'register'])->name('register');
-    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 });
 
 Route::middleware([Auth::class])->prefix('dashboard')->group(function() {
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
     Route::get('/', function () {
         return view('dashboard');
     })->name('dashboard');
