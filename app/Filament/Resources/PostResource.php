@@ -39,6 +39,7 @@ class PostResource extends Resource
                 Select::make('category_id')
                     ->label('Category')
                     ->options(Category::all()->pluck('name', 'id'))
+                    ->optionsLimit(10)
                     ->required(),
             ]);
     }

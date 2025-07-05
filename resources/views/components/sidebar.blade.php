@@ -7,7 +7,7 @@
     
     <ul class="nav nav-pills flex-column mb-auto">
         <li class="nav-item">
-            <a href="#" class="nav-link text-white" aria-current="page">
+            <a href="/dashboard" class="nav-link text-white" aria-current="page">
                 <i class="bi bi-house-door me-2"></i>
                 داشبورد
             </a>

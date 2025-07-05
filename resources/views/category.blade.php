@@ -7,6 +7,7 @@
           @foreach($posts as $post)
             <x-post-card :post="$post" />
           @endforeach
+          {{ $posts->links() }}
         @else
           <div class="col-12 text-center">
             <p>هنوز خبری برای این بخش ثبت نشده.</p>

@@ -10,7 +10,7 @@ class CategoryController extends Controller
 {
     public function show(Category $category)
     {
-        $posts = $category->posts()->where('status', 'accepted')->get();
+        $posts = $category->posts()->where('status', 'accepted')->paginate(10);
         $name = $category->name;
         
         return view('category', compact(['posts', 'name']));
@@ -18,7 +18,7 @@ class CategoryController extends Controller
 
     public function showUncategorized()
     {
-        $posts = Post::where('category_id', null)->get();
+        $posts = Post::where('category_id', null)->paginate(10);
         $name = "Uncategorized";
 
         return view('category', compact(['posts', 'name']));
