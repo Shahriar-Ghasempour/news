@@ -8,17 +8,29 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    public function show(Category $category)
+    public function show(Request $request, Category $category)
     {
-        $posts = $category->posts()->where('status', 'accepted')->paginate(10);
+        $query = $category->posts()->where('status', 'accepted');
+
+        if ($search = $request->input('search')) {
+            $query->where('name', 'like', "%$search%");
+        }
+
+        $posts = $query->paginate(4)->withQueryString();
         $name = $category->name;
         
         return view('category', compact(['posts', 'name']));
     }
 
-    public function showUncategorized()
+    public function showUncategorized(Request $request)
     {
-        $posts = Post::where('category_id', null)->paginate(10);
+        $query = Post::whereNull('category_id')->where('status', 'accepted');
+
+        if ($search = $request->input('search')) {
+            $query->where('name', 'like', "%$search%");
+        }
+
+        $posts = $query->paginate(4)->withQueryString();
         $name = "Uncategorized";
 
         return view('category', compact(['posts', 'name']));
