@@ -31,12 +31,12 @@
                 کامنت های پست ها
             </a>
         </li>
+        @endif
         <li>
             <a href={{ route('dashboard.comments') }} class="nav-link text-white">
                 <i class="bi bi-gear me-2"></i>
                 کامنت های شما
             </a>
         </li>
-        @endif
     </ul>
 </div>
