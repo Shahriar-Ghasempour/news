@@ -14,6 +14,12 @@
         </li>
         @if(auth()->user()->role != 'user')
         <li>
+            <a href="/admin" class="nav-link text-white">
+                <i class="bi bi-gear me-2"></i>
+                پنل مدیریت
+            </a>
+        </li>
+        <li>
             <a href={{ route('dashboard.posts') }} class="nav-link text-white">
                 <i class="bi bi-speedometer2 me-2"></i>
                 پست های شما
